@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hello">Hello World, Click Me!</string>
+    <string name="ApplicationName">RestClient</string>
+    <string name="Go">go</string>
+    <string name="Url">URL</string>
+    <string name="OpenDrawer">Open drawer</string>
+    <string name="CloseDrawer">Close drawer</string>
+</resources>
