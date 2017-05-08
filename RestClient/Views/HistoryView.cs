@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Android.OS;
+using Android.Views;
 using Android.Widget;
-using ListFragment = Android.Support.V4.App.ListFragment;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.Support.V4;
+using RestClient.Core.ViewModels;
+
 
 namespace RestClient.Views
 {
-    public class HistoryView : ListFragment
+    public class HistoryView : MvxFragment<HistoryViewModel>
     {
-        public override void OnStart()
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            base.OnStart();
+            base.OnCreateView(inflater, container, savedInstanceState);
 
-            ListAdapter = new ArrayAdapter(
-                Activity,
-                Android.Resource.Layout.SimpleListItem1,
-                new[] { "First", "Second", "Third", "Fourth" });
+            return this.BindingInflate(Resource.Layout.HistoryView, null);
         }
     }
 }

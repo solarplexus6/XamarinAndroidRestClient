@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingRight="16dp"
+    android:focusableInTouchMode="true">
     <EditText
         android:id="@+id/edit_url"
         android:layout_width="match_parent"
@@ -13,24 +13,30 @@
         android:hint="@string/Url"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/method_spinner"
-        local:MvxBind="Text URL"/>
+        local:MvxBind="Text URL" />
     <MvxSpinner
         android:id="@id/method_spinner"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        local:MvxBind="ItemsSource Methods; SelectedItem SelectedMethod"/>
+        local:MvxBind="ItemsSource Methods; SelectedItem SelectedMethod" />
     <Button
         android:id="@+id/send_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_url"
         android:text="@string/Go"
-        local:MvxBind="Click SendRequestCommand"/>
-  <TextView
+        local:MvxBind="Click SendRequestCommand" />
+    <EditText
+        android:id="@+id/edit_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/Body"
         android:layout_below="@id/send_request_button"
-        local:MvxBind="Text ResponseContent"/>
-  
+        local:MvxBind="Text Body" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_body"
+        local:MvxBind="Text ResponseContent" />
 </RelativeLayout>

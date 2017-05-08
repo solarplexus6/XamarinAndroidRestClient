@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 using MvvmCross.Core.ViewModels;
 using System.Net.Http;
+using MvvmCross.Platform;
+using RestClient.Core.Models;
+using RestClient.Core.Services;
 
 namespace RestClient.Core.ViewModels
 {
     public class RequestViewModel : MvxViewModel
     {
         // TODO: as service
-        HttpClient _client = new HttpClient();
+        private HttpClient _client = new HttpClient();
+        private IHistoryService _historyService;
 
         private string _url = "https://postman-echo.com/get?test=123";
         public string URL
@@ -52,21 +56,35 @@ namespace RestClient.Core.ViewModels
             }
         }
 
-        async void SendRequest()
-        {
-            var method = new HttpMethod(SelectedMethod);
-            var request = new HttpRequestMessage(method, URL);
-            // TODO: cancelation token
-            var response = await _client.SendAsync(request);
-            var content = await response.Content.ReadAsStringAsync();
-            ResponseContent = content;
-        }
-
         private string _responseContent;
         public string ResponseContent
         {
             get => _responseContent;
             set => SetProperty(ref _responseContent, value);
+        }
+
+        public RequestViewModel()
+        {
+            _historyService = Mvx.Resolve<IHistoryService>();
+        }
+
+        async void SendRequest()
+        {
+            var method = new HttpMethod(SelectedMethod);
+            var url = URL;
+            var request = new HttpRequestMessage(method, url);
+            try
+            {
+                // TODO: cancelation token
+                var response = await _client.SendAsync(request);
+                var content = await response.Content.ReadAsStringAsync();
+                ResponseContent = content;
+                _historyService.History.Add(new HistoryItem(url));
+            }
+            catch (Exception)
+            {
+                
+            }
         }
     }
 }

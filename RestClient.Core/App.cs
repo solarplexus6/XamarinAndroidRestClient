@@ -12,10 +12,10 @@ namespace RestClient.Core
     {
         public override void Initialize()
         {
-            //CreatableTypes()
-            //    .EndingWith("Service")
-            //    .AsInterfaces()
-            //    .RegisterAsLazySingleton();
+            CreatableTypes()
+                .EndingWith("Service")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
 
             // RegisterAppStart<ViewModels.FirstViewModel>();
         }

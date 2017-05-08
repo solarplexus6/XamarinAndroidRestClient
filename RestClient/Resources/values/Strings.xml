@@ -4,6 +4,7 @@
     <string name="ApplicationName">RestClient</string>
     <string name="Go">go</string>
     <string name="Url">URL</string>
+    <string name="Body">Body</string>
     <string name="OpenDrawer">Open drawer</string>
     <string name="CloseDrawer">Close drawer</string>
 </resources>
