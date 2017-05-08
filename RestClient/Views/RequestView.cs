@@ -10,11 +10,15 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Fragment = Android.Support.V4.App.Fragment;
+
+using MvvmCross.Droid.Support.V4;
+
+using RestClient.Core.ViewModels;
+using MvvmCross.Binding.Droid.BindingContext;
 
 namespace RestClient.Views
 {
-    public class RequestView : Fragment
+    public class RequestView : MvxFragment<RequestViewModel>
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,8 +29,9 @@ namespace RestClient.Views
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            return inflater.Inflate(Resource.Layout.RequestView, container, false);
+            base.OnCreateView(inflater, container, savedInstanceState);
+            
+            return this.BindingInflate(Resource.Layout.RequestView, null);
         }
     }
 }

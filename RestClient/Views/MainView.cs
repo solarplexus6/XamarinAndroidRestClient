@@ -15,15 +15,23 @@ using Fragment = Android.Support.V4.App.Fragment;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 
+using MvvmCross.Droid.Support.V4;
+using MvvmCross.Droid.Platform;
+using MvvmCross.Droid.Support.V7.AppCompat;
+
 using RestClient.Adapters;
+using RestClient.Core.ViewModels;
 
 namespace RestClient.Views
 {
-    [Activity(Label = "MainView", MainLauncher = true, Theme = "@style/Theme.AppCompat")]
-    public class MainView : AppCompatActivity
+    [Activity(Label = "MainView", MainLauncher = true, Theme = "@style/Theme.AppCompat.NoActionBar")]
+    public class MainView : MvxCachingFragmentCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            var setupSingleton = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext);
+            setupSingleton.EnsureInitialized();
+
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.MainView);
@@ -40,22 +48,18 @@ namespace RestClient.Views
             drawerLayout.AddDrawerListener(drawerToggle);
             drawerToggle.SyncState();
 
-            var fragments = new Fragment[]
+            var fragments = new List<MvxCachingFragmentStatePagerAdapter.FragmentInfo>
             {
-                new RequestView(),
-                new HistoryView(),
-            };
-
-            var titles = new[]
-            {
-                "Request",
-                "History",
+                new MvxCachingFragmentStatePagerAdapter.FragmentInfo("Request", typeof(RequestView), new RequestViewModel()),
+                new MvxCachingFragmentStatePagerAdapter.FragmentInfo("History", typeof(HistoryView), new HistoryViewModel()),
             };
 
             var viewPager = FindViewById<ViewPager>(Resource.Id.ViewPager);
-            var adapter = new TabsAdapter(SupportFragmentManager, fragments, titles);
+            // var adapter = new TabsAdapter(SupportFragmentManager, fragments, titles);
+            var adapter = new MvxCachingFragmentStatePagerAdapter(this, SupportFragmentManager, fragments);
+            
             viewPager.Adapter = adapter;
-
+            
             var tabLayout = FindViewById<TabLayout>(Resource.Id.TabLayout);
             tabLayout.SetupWithViewPager(viewPager);
         }
