@@ -4001,8 +4001,8 @@ namespace RestClient
 			// aapt resource value: 0x7f07008f
 			public const int action_divider = 2131165327;
 			
-			// aapt resource value: 0x7f0700a3
-			public const int action_edit = 2131165347;
+			// aapt resource value: 0x7f0700a4
+			public const int action_edit = 2131165348;
 			
 			// aapt resource value: 0x7f070089
 			public const int action_image = 2131165321;
@@ -4022,8 +4022,8 @@ namespace RestClient
 			// aapt resource value: 0x7f070045
 			public const int action_mode_close_button = 2131165253;
 			
-			// aapt resource value: 0x7f0700a4
-			public const int action_save = 2131165348;
+			// aapt resource value: 0x7f0700a5
+			public const int action_save = 2131165349;
 			
 			// aapt resource value: 0x7f07008a
 			public const int action_text = 2131165322;
@@ -4205,8 +4205,8 @@ namespace RestClient
 			// aapt resource value: 0x7f070082
 			public const int main_content = 2131165314;
 			
-			// aapt resource value: 0x7f0700a2
-			public const int masked = 2131165346;
+			// aapt resource value: 0x7f0700a3
+			public const int masked = 2131165347;
 			
 			// aapt resource value: 0x7f07008e
 			public const int media_actions = 2131165326;
@@ -4325,6 +4325,9 @@ namespace RestClient
 			// aapt resource value: 0x7f070074
 			public const int select_dialog_listview = 2131165300;
 			
+			// aapt resource value: 0x7f0700a1
+			public const int send_request_button = 2131165345;
+			
 			// aapt resource value: 0x7f07005e
 			public const int shortcut = 2131165278;
 			
@@ -4439,8 +4442,8 @@ namespace RestClient
 			// aapt resource value: 0x7f07000e
 			public const int view_offset_helper = 2131165198;
 			
-			// aapt resource value: 0x7f0700a1
-			public const int visible = 2131165345;
+			// aapt resource value: 0x7f0700a2
+			public const int visible = 2131165346;
 			
 			// aapt resource value: 0x7f070029
 			public const int withText = 2131165225;

@@ -21,9 +21,16 @@
         android:layout_alignParentRight="true"
         local:MvxBind="ItemsSource Methods; SelectedItem SelectedMethod"/>
     <Button
+        android:id="@+id/send_request_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_url"
         android:text="@string/Go"
         local:MvxBind="Click SendRequestCommand"/>
+  <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/send_request_button"
+        local:MvxBind="Text ResponseContent"/>
+  
 </RelativeLayout>
