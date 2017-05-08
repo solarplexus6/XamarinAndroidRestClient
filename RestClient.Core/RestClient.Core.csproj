@@ -34,7 +34,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Models\GeoIpData.cs" />
+    <Compile Include="Models\HistoryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HistoryService.cs" />
+    <Compile Include="Services\IHistoryService.cs" />
+    <Compile Include="ViewModels\HistoryItemViewModel.cs" />
     <Compile Include="ViewModels\HistoryViewModel.cs" />
     <Compile Include="ViewModels\RequestViewModel.cs" />
   </ItemGroup>
