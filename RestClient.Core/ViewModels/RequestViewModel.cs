@@ -9,6 +9,8 @@ using System.Net.Http;
 using MvvmCross.Platform;
 using RestClient.Core.Models;
 using RestClient.Core.Services;
+using MvvmCross.Plugins.Messenger;
+using RestClient.Core.Messages;
 
 namespace RestClient.Core.ViewModels
 {
@@ -17,6 +19,7 @@ namespace RestClient.Core.ViewModels
         // TODO: as service
         private HttpClient _client = new HttpClient();
         private IHistoryService _historyService;
+        private readonly MvxSubscriptionToken _token;
 
         private string _url = "https://postman-echo.com/get?test=123";
         public string URL
@@ -65,7 +68,17 @@ namespace RestClient.Core.ViewModels
 
         public RequestViewModel()
         {
+            // TODO dependencies
             _historyService = Mvx.Resolve<IHistoryService>();
+
+            var messenger = Mvx.Resolve<IMvxMessenger>();
+            _token = messenger.Subscribe<ClearRequestFormMessage>(ClearRequestForm);
+        }
+
+        private void ClearRequestForm(ClearRequestFormMessage obj)
+        {
+            URL = "";
+            ResponseContent = "";
         }
 
         async void SendRequest()
@@ -86,5 +99,7 @@ namespace RestClient.Core.ViewModels
             {
             }
         }
+
+
     }
 }

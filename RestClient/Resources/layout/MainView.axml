@@ -40,7 +40,8 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         app:layout_anchor="@id/tabsContainer"
-        app:layout_anchorGravity="bottom|right|end" />
+        app:layout_anchorGravity="bottom|right|end"
+        app:MvxBind="Click ClearFormCommand"/>
   </android.support.design.widget.CoordinatorLayout>
   <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"

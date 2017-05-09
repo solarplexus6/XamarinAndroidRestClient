@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 using Android.App;
 using Android.Content;
@@ -28,6 +29,16 @@ namespace RestClient
         {
             return new RestClient.Core.App();
         }
+
+        protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
+        {
+            typeof(Android.Support.Design.Widget.NavigationView).Assembly,
+            typeof(Android.Support.Design.Widget.FloatingActionButton).Assembly,
+            typeof(Android.Support.V7.Widget.Toolbar).Assembly,
+            typeof(Android.Support.V4.Widget.DrawerLayout).Assembly,
+            typeof(Android.Support.V4.View.ViewPager).Assembly,
+            typeof(MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView).Assembly
+        };
 
         /// <summary>
 		/// Fill the Binding Factory Registry with bindings from the support library.
