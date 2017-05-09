@@ -4166,8 +4166,8 @@ namespace RestClient
 			// aapt resource value: 0x7f070082
 			public const int drawer_layout = 2131165314;
 			
-			// aapt resource value: 0x7f0700a4
-			public const int edit_body = 2131165348;
+			// aapt resource value: 0x7f0700a3
+			public const int edit_body = 2131165347;
 			
 			// aapt resource value: 0x7f070068
 			public const int edit_query = 2131165288;
@@ -4376,8 +4376,8 @@ namespace RestClient
 			// aapt resource value: 0x7f070074
 			public const int select_dialog_listview = 2131165300;
 			
-			// aapt resource value: 0x7f0700a3
-			public const int send_request_button = 2131165347;
+			// aapt resource value: 0x7f0700a4
+			public const int send_request_button = 2131165348;
 			
 			// aapt resource value: 0x7f07005e
 			public const int shortcut = 2131165278;

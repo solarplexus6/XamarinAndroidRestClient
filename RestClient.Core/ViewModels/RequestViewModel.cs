@@ -51,19 +51,26 @@ namespace RestClient.Core.ViewModels
             set => SetProperty(ref _selectedMethod, value);
         }
 
+        private string _responseContent;
+        public string ResponseContent
+        {
+            get => _responseContent;
+            set => SetProperty(ref _responseContent, value);
+        }
+
+        private string _body;
+        public string Body
+        {
+            get => _body;
+            set => SetProperty(ref _body, value);
+        }
+
         public IMvxCommand SendRequestCommand
         {
             get
             {
                 return new MvxCommand(() => SendRequest());
             }
-        }
-
-        private string _responseContent;
-        public string ResponseContent
-        {
-            get => _responseContent;
-            set => SetProperty(ref _responseContent, value);
         }
 
         public RequestViewModel()
@@ -79,6 +86,7 @@ namespace RestClient.Core.ViewModels
         {
             URL = "";
             ResponseContent = "";
+            Body = "";
         }
 
         async void SendRequest()
@@ -87,17 +95,16 @@ namespace RestClient.Core.ViewModels
             var method = new HttpMethod(SelectedMethod);
             var url = URL;
             var request = new HttpRequestMessage(method, url);
-            try
-            {
-                // TODO: cancelation token
-                var response = await _client.SendAsync(request);
-                var content = await response.Content.ReadAsStringAsync();
-                ResponseContent = content;
-                _historyService.History.Add(new HistoryItem(url));
+            if (method != HttpMethod.Get) {
+                request.Content = new StringContent(Body);
             }
-            catch (Exception)
-            {
-            }
+
+
+            // TODO: cancelation token
+            var response = await _client.SendAsync(request);
+            var content = await response.Content.ReadAsStringAsync();
+            ResponseContent = content;
+            _historyService.History.Add(new HistoryItem(url));
         }
 
 
