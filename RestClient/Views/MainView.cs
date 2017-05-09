@@ -54,11 +54,22 @@ namespace RestClient.Views
             var viewPager = FindViewById<ViewPager>(Resource.Id.ViewPager);
             // var adapter = new TabsAdapter(SupportFragmentManager, fragments, titles);
             var adapter = new MvxCachingFragmentStatePagerAdapter(this, SupportFragmentManager, fragments);
-            
             viewPager.Adapter = adapter;
-            
+            viewPager.PageSelected += ViewPager_PageSelected;
+
             var tabLayout = FindViewById<TabLayout>(Resource.Id.TabLayout);
             tabLayout.SetupWithViewPager(viewPager);
+        }
+
+        private void ViewPager_PageSelected(object sender, ViewPager.PageSelectedEventArgs e)
+        {
+            var fab = FindViewById<FloatingActionButton>(Resource.Id.FloatingActionButton);
+            if (e.Position == 0) {
+                fab.Show();
+            }
+            else {
+                fab.Hide();
+            }
         }
     }
 }
