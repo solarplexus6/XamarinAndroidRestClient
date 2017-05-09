@@ -25,7 +25,6 @@ namespace RestClient.Core.ViewModels
         public MvxObservableCollection<HistoryItemViewModel> History
         {
             get => _history;
-            set => SetProperty(ref _history, value);
         }
 
         public HistoryViewModel() : base()
@@ -41,19 +40,22 @@ namespace RestClient.Core.ViewModels
             {
                 return;
             }
-//            var serializer = Mvx.Resolve<IMvxJsonConverter>();
-//            foreach (var url in e.NewItems.OfType<HistoryItem>().Select(item => new Uri(item.Url)))
-//            {
-//                try
-//                {
-//                    var geoResponse = await _client.GetAsync("http://freegeoip.net/json/" + url.AbsolutePath);
-//                    var content = await geoResponse.Content.ReadAsStreamAsync();
-//                    var geoIpData = serializer.DeserializeObject<GeoIpData>(content);
-//                    _history.Add(new HistoryItemViewModel(url.OriginalString, String.Format("https://flagpedia.net/data/flags/normal/{0}.png", geoIpData.CountryCode)));
-//                }
-//                catch {}
-//            }
-            _history.AddRange(e.NewItems.OfType<HistoryItem>().Select(item => new HistoryItemViewModel(item.Url, "https://flagpedia.net/data/flags/normal/fr.png")));
+            var serializer = Mvx.Resolve<IMvxJsonConverter>();
+            foreach (var url in e.NewItems.OfType<HistoryItem>().Select(item => new Uri(item.Url)))
+            {
+                var geoIpUrl = $"http://freegeoip.net/json/{url.Authority}";
+                var geoResponse = await _client.GetAsync(geoIpUrl);
+                var content = await geoResponse.Content.ReadAsStreamAsync();
+                try
+                {
+                    var geoIpData = serializer.DeserializeObject<GeoIpData>(content);
+                    _history.Add(new HistoryItemViewModel(url.OriginalString, $"https://flagpedia.net/data/flags/normal/{geoIpData.CountryCode.ToLower()}.png"));
+                }
+                catch
+                {
+                }
+            }
+            // _history.AddRange(e.NewItems.OfType<HistoryItem>().Select(item => new HistoryItemViewModel(item.Url, "https://flagpedia.net/data/flags/normal/fr.png")));
         }
     }
 }

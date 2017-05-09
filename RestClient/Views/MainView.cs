@@ -29,9 +29,6 @@ namespace RestClient.Views
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            var setupSingleton = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext);
-            setupSingleton.EnsureInitialized();
-
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.MainView);

@@ -7,7 +7,11 @@
   <MvxImageView 
     android:layout_width="25dp"
     android:layout_height="match_parent"
+    android:maxHeight="25dp"
+    android:maxWidth="25dp"
     android:scaleType="fitCenter"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
     local:MvxBind="ImageUrl FlagUrl"/>
   <TextView 
     android:layout_width="fill_parent"

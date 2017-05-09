@@ -70,6 +70,7 @@ namespace RestClient.Core.ViewModels
 
         async void SendRequest()
         {
+            // TODO progress
             var method = new HttpMethod(SelectedMethod);
             var url = URL;
             var request = new HttpRequestMessage(method, url);
@@ -83,7 +84,6 @@ namespace RestClient.Core.ViewModels
             }
             catch (Exception)
             {
-                
             }
         }
     }
