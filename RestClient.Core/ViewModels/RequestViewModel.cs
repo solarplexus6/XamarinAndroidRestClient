@@ -28,21 +28,6 @@ namespace RestClient.Core.ViewModels
             set => SetProperty(ref _url, value);
         }
 
-        public List<string> Methods
-        {
-            get
-            {
-                return new List<string>
-                {
-                    "GET",
-                    "POST",
-                    "PUT",
-                    "DELETE",
-                    "PATCH"
-                };
-            }
-        }
-
         // TODO: use HttpMethod and value converter
         private string _selectedMethod;
         public string SelectedMethod
@@ -65,12 +50,41 @@ namespace RestClient.Core.ViewModels
             set => SetProperty(ref _body, value);
         }
 
+        private bool _isInProgress;
+        public bool IsInProgress
+        {
+            get => _isInProgress;
+            set => SetProperty(ref _isInProgress, value);
+        }
+
+        public List<string> Methods
+        {
+            get
+            {
+                return new List<string>
+                {
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE",
+                    "PATCH"
+                };
+            }
+        }
+
         public IMvxCommand SendRequestCommand
         {
             get
             {
                 return new MvxCommand(() => SendRequest());
             }
+        }
+
+        public event EventHandler HideKeyboard;
+
+        protected virtual void OnHideKeyboard()
+        {
+            HideKeyboard?.Invoke(this, EventArgs.Empty);
         }
 
         public RequestViewModel()
@@ -84,27 +98,36 @@ namespace RestClient.Core.ViewModels
 
         private void ClearRequestForm(ClearRequestFormMessage obj)
         {
-            URL = "";
-            ResponseContent = "";
-            Body = "";
+            URL = string.Empty;
+            ResponseContent = string.Empty;
+            Body = string.Empty;
         }
 
         async void SendRequest()
         {
-            // TODO progress
-            var method = new HttpMethod(SelectedMethod);
+            if (URL == null || URL == string.Empty)
+            {
+                return;
+            }
+            ResponseContent = string.Empty;
+            OnHideKeyboard();
+            IsInProgress = true;
+
             var url = URL;
+            var method = new HttpMethod(SelectedMethod);
             var request = new HttpRequestMessage(method, url);
             if (method != HttpMethod.Get) {
                 request.Content = new StringContent(Body);
             }
 
-
+            // TODO: exceptions
             // TODO: cancelation token
             var response = await _client.SendAsync(request);
             var content = await response.Content.ReadAsStringAsync();
             ResponseContent = content;
             _historyService.History.Add(new HistoryItem(url));
+
+            IsInProgress = false;
         }
 
 

@@ -4046,8 +4046,8 @@ namespace RestClient
 			// aapt resource value: 0x7f070091
 			public const int action_divider = 2131165329;
 			
-			// aapt resource value: 0x7f0700a7
-			public const int action_edit = 2131165351;
+			// aapt resource value: 0x7f0700a8
+			public const int action_edit = 2131165352;
 			
 			// aapt resource value: 0x7f07008b
 			public const int action_image = 2131165323;
@@ -4067,8 +4067,8 @@ namespace RestClient
 			// aapt resource value: 0x7f070045
 			public const int action_mode_close_button = 2131165253;
 			
-			// aapt resource value: 0x7f0700a8
-			public const int action_save = 2131165352;
+			// aapt resource value: 0x7f0700a9
+			public const int action_save = 2131165353;
 			
 			// aapt resource value: 0x7f07008c
 			public const int action_text = 2131165324;
@@ -4253,8 +4253,8 @@ namespace RestClient
 			// aapt resource value: 0x7f070083
 			public const int main_content = 2131165315;
 			
-			// aapt resource value: 0x7f0700a6
-			public const int masked = 2131165350;
+			// aapt resource value: 0x7f0700a7
+			public const int masked = 2131165351;
 			
 			// aapt resource value: 0x7f070090
 			public const int media_actions = 2131165328;
@@ -4303,6 +4303,9 @@ namespace RestClient
 			
 			// aapt resource value: 0x7f07003a
 			public const int pin = 2131165242;
+			
+			// aapt resource value: 0x7f0700a5
+			public const int progressBar = 2131165349;
 			
 			// aapt resource value: 0x7f070006
 			public const int progress_circular = 2131165190;
@@ -4493,8 +4496,8 @@ namespace RestClient
 			// aapt resource value: 0x7f07000e
 			public const int view_offset_helper = 2131165198;
 			
-			// aapt resource value: 0x7f0700a5
-			public const int visible = 2131165349;
+			// aapt resource value: 0x7f0700a6
+			public const int visible = 2131165350;
 			
 			// aapt resource value: 0x7f070029
 			public const int withText = 2131165225;
